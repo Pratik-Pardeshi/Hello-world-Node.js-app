@@ -16,6 +16,7 @@ resource "aws_ecs_task_definition" "hello_world_task" {
   requires_compatibilities = ["FARGATE"]
   cpu                      = "256"
   memory                   = "512"
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn  # Add this line
 
   container_definitions = jsonencode([
     {
@@ -30,6 +31,7 @@ resource "aws_ecs_task_definition" "hello_world_task" {
     }
   ])
 }
+
 
 resource "aws_ecs_service" "hello_world_service" {
   name            = "hello-world-service"
