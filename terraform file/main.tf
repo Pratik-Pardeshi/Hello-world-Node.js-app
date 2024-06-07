@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1" # Change to your preferred region
+  region = "ap-south-1" # Change to your preferred region
 }
 
 resource "aws_ecs_cluster" "hello_world_cluster" {
@@ -16,7 +16,7 @@ resource "aws_ecs_task_definition" "hello_world_task" {
   container_definitions = jsonencode([
     {
       name      = "hello-world-app"
-      image     = "your-dockerhub-username/hello-world-app:latest" # Change this
+      image     = "pratikp02/hello-world-app:latest" # Change this
       essential = true
       portMappings = [
         {
@@ -61,7 +61,7 @@ resource "aws_ecs_service" "hello_world_service" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets         = ["subnet-xxxxxxxx", "subnet-xxxxxxxx"] # Add your subnets
+    subnets         = ["subnet-076b8013dbc48a1a9", "subnet-0ec9f36e685e5569f"] # Add your subnets
     security_groups = [aws_security_group.ecs_security_group.id]
   }
 }
